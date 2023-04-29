@@ -1,31 +1,41 @@
 package hexlet.code;
 
-public class StringSchema {
+public class StringSchema extends BaseSchema {
     private boolean notNull = false;
     private String substring;
     private Integer minLength;
     private Integer maxLength;
 
-    public boolean isValid(String checkString) {
-        boolean result = true;
-        if (notNull) {
-            result = result && (checkString != null && !checkString.isEmpty());
+    public boolean notNull(Object o) {
+        if (o instanceof String || o == null) {
+            String checkString = (String) o;
+            boolean result = true;
+            if (notNull) {
+                if (!super.notNull(checkString)) {
+                    return false;
+                }
+                result = !checkString.isEmpty();
+            } else {
+                if (checkString == null) {
+                    return true;
+                }
+            }
+            if (minLength != null) {
+                result = result && checkMinLength(checkString);
+            }
+            if (maxLength != null) {
+                result = result && checkMaxLength(checkString);
+            }
+            if (substring != null) {
+                result = result && checkString.contains(substring);
+            }
+            return result;
         }
-        if (minLength != null) {
-            result = result && checkMinLength(checkString);
-        }
-        if (maxLength != null) {
-            result = result && checkMaxLength(checkString);
-        }
-        if (substring != null) {
-            result = result && checkString.contains(substring);
-        }
-        return result;
+        return false;
     }
 
-    public StringSchema required() {
+    public void required() {
         this.notNull = true;
-        return this;
     }
 
     public StringSchema minLength(int length) {
