@@ -5,7 +5,7 @@ import java.util.Map;
 public class MapSchema extends BaseSchema {
     private boolean notNull = false;
     private Integer size;
-    private Map<String, BaseSchema> shapes;
+    private Map<String, BaseSchema> checkShapes;
 
     public boolean isValid(Object o) {
         if (o instanceof Map || o == null) {
@@ -23,7 +23,7 @@ public class MapSchema extends BaseSchema {
             if (size != null) {
                 result = result && size == checkMap.size();
             }
-            if (shapes != null) {
+            if (checkShapes != null) {
                 result = checkEntries(checkMap, result);
             }
             return result;
@@ -33,7 +33,7 @@ public class MapSchema extends BaseSchema {
 
     private boolean checkEntries(Map<String, Object> checkMap, boolean result) {
         for (Map.Entry<String, Object> entry : checkMap.entrySet()) {
-            for (Map.Entry<String, BaseSchema> shape : shapes.entrySet()) {
+            for (Map.Entry<String, BaseSchema> shape : checkShapes.entrySet()) {
                 if (entry.getKey().equals(shape.getKey())) {
                     result = result && shape.getValue().isValid(entry.getValue());
                 }
@@ -47,11 +47,11 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
-    public void sizeof(int size) {
-        this.size = size;
+    public void sizeof(int requiredSize) {
+        this.size = requiredSize;
     }
 
     public void shape(Map<String, BaseSchema> shapes) {
-        this.shapes = shapes;
+        this.checkShapes = shapes;
     }
 }
