@@ -10,7 +10,7 @@ public final class NumberSchema extends BaseSchema {
             Integer checkNumber = (Integer) o;
             boolean result = true;
             if (notNull) {
-                if (!super.isValid(checkNumber)) {
+                if (!super.notNull(checkNumber)) {
                     return false;
                 }
             } else {

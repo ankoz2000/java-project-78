@@ -11,7 +11,7 @@ public final class StringSchema extends BaseSchema {
             String checkString = (String) o;
             boolean result = true;
             if (notNull) {
-                if (!super.isValid(checkString)) {
+                if (!super.notNull(checkString)) {
                     return false;
                 }
                 result = !checkString.isEmpty();

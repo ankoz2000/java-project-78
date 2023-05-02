@@ -12,7 +12,7 @@ public final class MapSchema extends BaseSchema {
             Map<String, Object> checkMap = (Map<String, Object>) o;
             boolean result = true;
             if (notNull) {
-                if (!super.isValid(checkMap)) {
+                if (!super.notNull(checkMap)) {
                     return false;
                 }
             } else {
