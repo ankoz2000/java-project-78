@@ -1,7 +1,7 @@
 package hexlet.code;
 
 public class BaseSchema {
-    public boolean notNull(Object checkObject) {
+    public boolean isValid(Object checkObject) {
         return checkObject != null;
     }
 }

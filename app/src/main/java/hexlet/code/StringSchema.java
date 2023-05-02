@@ -6,12 +6,12 @@ public class StringSchema extends BaseSchema {
     private Integer minLength;
     private Integer maxLength;
 
-    public boolean notNull(Object o) {
+    public boolean isValid(Object o) {
         if (o instanceof String || o == null) {
             String checkString = (String) o;
             boolean result = true;
             if (notNull) {
-                if (!super.notNull(checkString)) {
+                if (!super.isValid(checkString)) {
                     return false;
                 }
                 result = !checkString.isEmpty();

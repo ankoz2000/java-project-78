@@ -5,12 +5,12 @@ public class NumberSchema extends BaseSchema {
     private boolean positive = false;
     private Integer[] range;
 
-    public boolean notNull(Object o) {
+    public boolean isValid(Object o) {
         if (o instanceof Integer || o == null) {
             Integer checkNumber = (Integer) o;
             boolean result = true;
             if (notNull) {
-                if (!super.notNull(checkNumber)) {
+                if (!super.isValid(checkNumber)) {
                     return false;
                 }
             } else {
