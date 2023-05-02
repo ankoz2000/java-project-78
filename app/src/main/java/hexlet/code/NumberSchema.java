@@ -31,8 +31,9 @@ public class NumberSchema extends BaseSchema {
         return false;
     }
 
-    public void required() {
+    public NumberSchema required() {
         this.notNull = true;
+        return this;
     }
 
     public NumberSchema positive() {

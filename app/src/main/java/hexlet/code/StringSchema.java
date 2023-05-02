@@ -34,8 +34,9 @@ public class StringSchema extends BaseSchema {
         return false;
     }
 
-    public void required() {
+    public StringSchema required() {
         this.notNull = true;
+        return this;
     }
 
     public StringSchema minLength(int length) {
