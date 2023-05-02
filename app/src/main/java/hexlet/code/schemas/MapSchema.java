@@ -20,24 +20,39 @@ public final class MapSchema extends BaseSchema {
                     return true;
                 }
             }
-            if (size != null) {
-                result = result && size == checkMap.size();
-            }
-            if (checkShapes != null) {
-                result = checkEntries(checkMap, result);
-            }
+            result = checkSize(checkMap, result);
+            result = checkShapes(checkMap, result);
             return result;
         }
         return false;
     }
 
+    private boolean checkShapes(Map<String, Object> checkMap, boolean result) {
+        if (checkShapes != null) {
+            result = checkEntries(checkMap, result);
+        }
+        return result;
+    }
+
+    private boolean checkSize(Map<String, Object> checkMap, boolean result) {
+        if (size != null) {
+            result = result && size == checkMap.size();
+        }
+        return result;
+    }
+
     private boolean checkEntries(Map<String, Object> checkMap, boolean result) {
         for (Map.Entry<String, Object> entry : checkMap.entrySet()) {
             for (Map.Entry<String, BaseSchema> shape : checkShapes.entrySet()) {
-                if (entry.getKey().equals(shape.getKey())) {
-                    result = result && shape.getValue().isValid(entry.getValue());
-                }
+                result = checkValidEntries(result, entry, shape);
             }
+        }
+        return result;
+    }
+
+    private boolean checkValidEntries(boolean result, Map.Entry<String, Object> entry, Map.Entry<String, BaseSchema> shape) {
+        if (entry.getKey().equals(shape.getKey())) {
+            result = result && shape.getValue().isValid(entry.getValue());
         }
         return result;
     }
