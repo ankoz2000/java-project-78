@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommonTest {
+public final class CommonTest {
     private StringSchema stringSchema;
     private NumberSchema numberSchema;
     private MapSchema mapSchema;
