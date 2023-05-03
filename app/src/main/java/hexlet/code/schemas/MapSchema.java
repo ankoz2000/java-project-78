@@ -50,7 +50,8 @@ public final class MapSchema extends BaseSchema {
         return result;
     }
 
-    private boolean checkValidEntries(boolean result, Map.Entry<String, Object> entry, Map.Entry<String, BaseSchema> shape) {
+    private boolean checkValidEntries(boolean result, Map.Entry<String, Object> entry,
+                                                    Map.Entry<String, BaseSchema> shape) {
         if (entry.getKey().equals(shape.getKey())) {
             result = result && shape.getValue().isValid(entry.getValue());
         }
