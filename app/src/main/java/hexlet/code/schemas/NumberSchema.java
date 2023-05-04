@@ -1,48 +1,18 @@
 package hexlet.code.schemas;
 
 public final class NumberSchema extends BaseSchema {
-    private boolean notNull = false;
-    private boolean positive = false;
-    private Integer[] range;
-
-    public boolean isValid(Object o) {
-        if (o instanceof Integer || o == null) {
-            Integer checkNumber = (Integer) o;
-            boolean result = true;
-            if (notNull) {
-                if (!super.notNull(checkNumber)) {
-                    return false;
-                }
-            } else {
-                if (checkNumber == null) {
-                    return true;
-                }
-            }
-            if (positive) {
-                result = result && checkNumber > 0;
-            }
-            if (range != null) {
-                Integer begin = range[0];
-                Integer end = range[1];
-                result = result && checkNumber >= begin && checkNumber <= end;
-            }
-            return result;
-        }
-        return false;
-    }
-
     public NumberSchema required() {
-        this.notNull = true;
+        addCheck("required", o -> (o instanceof Integer));
         return this;
     }
 
     public NumberSchema positive() {
-        this.positive = true;
+        addCheck("positive", o -> o == null || (o instanceof Integer val) && val > 0);
         return this;
     }
 
     public NumberSchema range(int begin, int end) {
-        this.range = new Integer[]{begin, end};
+        addCheck("range", o -> ((Integer) o) >= begin && ((Integer) o) <= end);
         return this;
     }
 }

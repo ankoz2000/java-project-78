@@ -1,9 +1,18 @@
 package hexlet.code.schemas;
 
-public abstract class BaseSchema {
-    public abstract boolean isValid(Object checkObject);
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
 
-    public final boolean notNull(Object checkObject) {
-        return checkObject != null;
+public abstract class BaseSchema {
+    protected  Map<String, Predicate> predicates = new HashMap<>();
+
+    public boolean isValid(Object checkObject) {
+        return predicates.entrySet().stream()
+                .allMatch(p -> p.getValue().test(checkObject));
+    }
+
+    protected final void addCheck(String name, Predicate validate) {
+        predicates.put(name, validate);
     }
 }

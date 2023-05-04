@@ -100,21 +100,21 @@ public final class CommonTest {
         Map<String, Object> human1 = new HashMap<>();
         human1.put("name", "Kolya");
         human1.put("age", 100);
-        Assertions.assertTrue(mapSchema.isValid(human1)); // true
+        Assertions.assertTrue(mapSchema.isValid(human1));
 
         Map<String, Object> human2 = new HashMap<>();
         human2.put("name", "Maya");
         human2.put("age", null);
-        Assertions.assertTrue(mapSchema.isValid(human2)); // true
+        Assertions.assertTrue(mapSchema.isValid(human2));
 
         Map<String, Object> human3 = new HashMap<>();
         human3.put("name", "");
         human3.put("age", null);
-        Assertions.assertFalse(mapSchema.isValid(human3)); // false
+        Assertions.assertFalse(mapSchema.isValid(human3));
 
         Map<String, Object> human4 = new HashMap<>();
         human4.put("name", "Valya");
         human4.put("age", -5);
-        Assertions.assertFalse(mapSchema.isValid(human4)); // false
+        Assertions.assertFalse(mapSchema.isValid(human4));
     }
 }
