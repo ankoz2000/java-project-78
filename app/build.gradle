@@ -63,10 +63,6 @@ testlogger {
     logLevel 'lifecycle'
 }
 
-application {
-    mainClass = 'hexlet.code.App'
-}
-
 checkstyle {
     toolVersion '9.2.1'
 }
