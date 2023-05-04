@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public abstract class BaseSchema {
-    protected  Map<String, Predicate> predicates = new HashMap<>();
+    protected final Map<String, Predicate> predicates = new HashMap<>();
 
     public final boolean isValid(Object checkObject) {
         return predicates.entrySet().stream()
