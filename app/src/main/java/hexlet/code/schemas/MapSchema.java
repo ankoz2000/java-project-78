@@ -28,6 +28,7 @@ public final class MapSchema extends BaseSchema {
     private boolean checkKeysAndValidValues(Map.Entry<String, Object> e, Map.Entry<String, BaseSchema> c) {
         if (c.getKey().equals(e.getKey())) {
             return c.getValue().isValid(e.getValue());
-        } else return true;
+        }
+        return true;
     }
 }
