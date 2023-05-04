@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 public abstract class BaseSchema {
     protected  Map<String, Predicate> predicates = new HashMap<>();
 
-    public boolean isValid(Object checkObject) {
+    public final boolean isValid(Object checkObject) {
         return predicates.entrySet().stream()
                 .allMatch(p -> p.getValue().test(checkObject));
     }
