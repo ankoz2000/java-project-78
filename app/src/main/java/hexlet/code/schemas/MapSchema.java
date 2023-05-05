@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema {
     public MapSchema required() {
-        addCheck("required", Objects::nonNull);
+        addCheck("required", Map.class::isInstance);
         return this;
     }
 
